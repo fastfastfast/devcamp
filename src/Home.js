@@ -1,16 +1,16 @@
 import './Home.css';
+import NavBar from './components/NavBar';
 import { Carousel } from 'react-bootstrap';
-import NavBar from './components/NavBar'
-
 
 function Home() {
-    return (
-      <div className="Home">
-          <Carousel>
+  return (
+    <div className="Home">
+        <NavBar/>
+        <Carousel>
             <Carousel.Item>
                 <img
                 className="d-block w-100"
-                src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/blog/play/dota_heroes.png"
+                src="holder.js/800x400?text=First slide&bg=373940"
                 alt="First slide"
                 />
                 <Carousel.Caption>
@@ -21,7 +21,7 @@ function Home() {
             <Carousel.Item>
                 <img
                 className="d-block w-100"
-                src="https://www.brighttv.co.th/wp-content/uploads/2019/10/League-of-Legend.jpg"
+                src="holder.js/800x400?text=Second slide&bg=282c34"
                 alt="Third slide"
                 />
 
@@ -33,7 +33,7 @@ function Home() {
             <Carousel.Item>
                 <img
                 className="d-block w-100"
-                src="https://steamcdn-a.akamaihd.net/steam/apps/911400/header.jpg?t=1602600816"
+                src="holder.js/800x400?text=Third slide&bg=20232a"
                 alt="Third slide"
                 />
 
@@ -43,8 +43,9 @@ function Home() {
                 </Carousel.Caption>
             </Carousel.Item>
             </Carousel>
-        </div>
-    );
-  }
+    </div>
+
+  );
+}
 
 export default Home;
