@@ -26,6 +26,7 @@ function NavBar() {
                     <Nav className="mr-auto">
                         <Link class="nav-link" to="/"> Home</Link>
                         <Link class="nav-link" to="/play">Play</Link>
+                        <Link class="nav-link" to="/community">Community</Link>
                     </Nav>
                     <Nav>
                         <Nav.Link href="#deets" onClick={handleShow2}>Login</Nav.Link>
