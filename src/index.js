@@ -2,13 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Home from './Home';
-import Play from './page/Play';
+import {
+  BrowserRouter as Router
+} from "react-router-dom";
+import App from './App'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Home />
-    <Play />
+    <Router>
+      <App/>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
