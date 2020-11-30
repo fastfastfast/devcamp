@@ -1,5 +1,5 @@
-import { Card, ListGroup, Tab, Row, Col } from 'react-bootstrap';
-// import './Styles/Play.css';
+import { Card, ListGroup, Tab, Row, Col, Image } from 'react-bootstrap';
+import '../Styles/Play.css';
 import NavBar from '../components/NavBar';
 import Figure from 'react-bootstrap/Figure'
 
@@ -35,26 +35,30 @@ function Play() {
                             </ListGroup>
                         </Col>
                         <Col sm={9}>
-                            <Tab.Content>
+                            <Tab.Content >
                                 <Tab.Pane eventKey="#link1">
-                                    <div>
-                                        game 1
-                                </div>
+                                    <div class="container">
+                                        <img src={`${process.env.PUBLIC_URL}/dota2.png`} className="img-size" />
+                                        <h1 style={{ fontSize: "100px", fontFamily: "Sofia" }} class="top-left">DOTA2</h1>
+                                    </div>
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="#link2">
-                                    <div>
-                                        game 2
-                                </div>
+                                    <div class="container">
+                                        <img src={`${process.env.PUBLIC_URL}/csgo.jpg`} className="img-size" />
+                                        <h1 style={{ fontSize: "100px", fontFamily: "Sofia" }} class="top-left">CS:GO</h1>
+                                    </div>
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="#link3">
-                                    <div>
-                                        game 3
-                                </div>
+                                    <div class="container">
+                                        <img src={`${process.env.PUBLIC_URL}/amongUs.jpg`} className="img-size" />
+                                        <h1 style={{ fontSize: "100px", fontFamily: "Sofia" }} class="top-left">Among Us</h1>
+                                    </div>
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="#link4">
-                                    <div>
-                                        game 4
-                                </div>
+                                    <div class="container">
+                                        <img src={`${process.env.PUBLIC_URL}/genshin.jpg`} className="img-size" />
+                                        <h1 style={{ fontSize: "100px", fontFamily: "Sofia" }} class="top-left">Genshin</h1>
+                                    </div>
                                 </Tab.Pane>
                             </Tab.Content>
                         </Col>
