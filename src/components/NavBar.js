@@ -1,34 +1,97 @@
-import { Navbar } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
-import { Form } from 'react-bootstrap';
-import { FormControl } from 'react-bootstrap';
+import { Navbar, Container, Col } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
+import React, { useEffect, useState } from "react";
+import './NavBar.css';
 
-function NavBar(){
-    return(
+
+function NavBar() {
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const [show1, setShow1] = useState(false)
+    const handleShow2 = () => setShow1(true);
+    const handleClose2 = () => setShow1(false);
+
+    return (
         <>
-            <Navbar bg="dark" variant="dark">
-                <a class="navbar-brand" href="#">Navbar</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Play</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Community</a>
-                    </li>
-                    <Form inline>
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                    <Button variant="outline-info">Search</Button>
-                    </Form>
-                </ul>
-                </div>
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+                <Navbar.Brand href="#home">Home</Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="mr-auto">
+                        <Nav.Link href="#features">Play</Nav.Link>
+                        <Nav.Link href="#pricing">Community</Nav.Link>
+                    </Nav>
+                    <Nav>
+                        <Nav.Link href="#deets" onClick={handleShow2}>Login</Nav.Link>
+                        <Nav.Link eventKey={2} href="#memes" onClick={handleShow}>
+                            Register
+                    </Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
             </Navbar>
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header >
+                    <Modal.Title>Register</Modal.Title>
+                </Modal.Header>
+                <Form>
+                    <Form.Group controlId="formGroupEmail" className="layout">
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control type="email" />
+                    </Form.Group>
+                    <Form.Group controlId="formGroupEmail" className="layout">
+                        <Form.Label>Id</Form.Label>
+                        <Form.Control type="email" />
+                    </Form.Group>
+                    <Form.Group controlId="formGroupPassword" className="layout">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" />
+                    </Form.Group>
+                    <Form.Group controlId="formGroupPassword" className="layout">
+                        <Form.Label>ConfirmPassword</Form.Label>
+                        <Form.Control type="password" />
+                    </Form.Group>
+                </Form>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        ยกเลิก
+            </Button>
+                    <Button variant="primary" onClick={handleClose}>
+                        ตกลง
+            </Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal show={show1} onHide={handleClose2}>
+                <Modal.Header >
+                    <Modal.Title>Login</Modal.Title>
+                </Modal.Header>
+                <Form>
+                    <Form.Group controlId="formGroupEmail" className="layout">
+                        <Form.Label>Id</Form.Label>
+                        <Form.Control type="email" />
+                    </Form.Group>
+                    <Form.Group controlId="formGroupPassword" className="layout">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" />
+                    </Form.Group>
+                </Form>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose2}>
+                        ยกเลิก
+            </Button>
+                    <Button variant="primary" onClick={handleClose2}>
+                        ตกลง
+            </Button>
+                </Modal.Footer>
+            </Modal>
+
+           
+            
         </>
     )
 }
