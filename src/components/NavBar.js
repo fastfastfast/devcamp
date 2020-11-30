@@ -4,6 +4,8 @@ import { Nav } from 'react-bootstrap';
 import { Button, Form } from 'react-bootstrap';
 import React, { useEffect, useState } from "react";
 import './NavBar.css';
+import { FormControl } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 
 function NavBar() {
@@ -18,12 +20,12 @@ function NavBar() {
     return (
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-                <Navbar.Brand href="#home">Home</Navbar.Brand>
+                {/* <Link href="#home" class="nav-link" to="/">Home</Link> */}
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="#features">Play</Nav.Link>
-                        <Nav.Link href="#pricing">Community</Nav.Link>
+                        <Link class="nav-link" to="/"> Home</Link>
+                        <Link class="nav-link" to="/play">Play</Link>
                     </Nav>
                     <Nav>
                         <Nav.Link href="#deets" onClick={handleShow2}>Login</Nav.Link>
@@ -59,10 +61,10 @@ function NavBar() {
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         ยกเลิก
-            </Button>
+                    </Button>
                     <Button variant="primary" onClick={handleClose}>
                         ตกลง
-            </Button>
+                    </Button>
                 </Modal.Footer>
             </Modal>
 
@@ -83,15 +85,12 @@ function NavBar() {
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose2}>
                         ยกเลิก
-            </Button>
+                    </Button>
                     <Button variant="primary" onClick={handleClose2}>
                         ตกลง
-            </Button>
+                    </Button>
                 </Modal.Footer>
             </Modal>
-
-           
-            
         </>
     )
 }
