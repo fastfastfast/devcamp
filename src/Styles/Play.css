@@ -1,4 +1,21 @@
-.Play{
-    height: 100px;
-    width: 49px;
+.img-size{
+    position: absolute;
+    left: -32px;
+    height: 300px;
+    width: 1305px;
+}
+.container {
+    position: relative;
+    text-align: right;
+    color: rgb(29, 16, 16);
+  }
+  /* Top left text */
+  .top-left {
+    position: absolute;
+    top: 50px;
+    left: 60px;
+    letter-spacing: 3vw;
+    margin: 2% 2% 50px 2%;
+    -webkit-text-stroke: 2px greenyellow;
+    
 }
