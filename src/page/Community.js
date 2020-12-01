@@ -1,11 +1,11 @@
 import NavBar from '../components/NavBar';
 import Figure from 'react-bootstrap/Figure';
-import { Card, ListGroup, Tab, Row, Col,Form,marginTop,Button } from 'react-bootstrap';
+import { Card, ListGroup, Tab, Row, Col,Form,Button } from 'react-bootstrap';
 import { firebase } from '../services/firebase'
 import {useEffect} from 'react'
 
 const fetchData = async() =>{
-    const snaphot = await firebase.database().ref('/').once('value')
+    const snaphot = await firebase.database().ref('/post').once('value')
     const data = snaphot.val()
     console.log(data)
 }
@@ -18,7 +18,6 @@ function Community() {
     return(
         <>
         <NavBar/>
-        
         <div className="community">
                 <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
                     <Row>
@@ -55,7 +54,7 @@ function Community() {
                                         <Form.Control as="textarea" rows={3} />
                                     </Form.Group>
                                     </div>
-                                    <Button as="input" type="submit" value="Submit" />{' '}
+                                    <Button as="input" type="submit" value="Submit" onClick="handle" s/>{' '}
                                     <Card border="primary" style={{ width: '18rem',marginTop:"20px" }}>
                                         <Card.Header>Header</Card.Header>
                                         <Card.Body>
@@ -69,12 +68,13 @@ function Community() {
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="#link2">
                                     <div>
-                                    <Form.Group controlId="exampleForm.ControlTextarea1">
+                                    <Form.Group controlId="exampleForm.ControlTextarea1">             {/* post box */}
                                         <Form.Label style={{ marginTop: "20px" }}>Post</Form.Label>
                                         <Form.Control as="textarea" rows={3} />
                                     </Form.Group>
                                     </div>
                                     <Button as="input" type="submit" value="Submit" />{' '}
+
                                     <Card border="primary" style={{ width: '18rem',marginTop:"20px" }}>
                                         <Card.Header>Header</Card.Header>
                                         <Card.Body>

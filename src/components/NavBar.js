@@ -58,13 +58,22 @@ function NavBar() {
                         <Form.Label>ConfirmPassword</Form.Label>
                         <Form.Control type="password" />
                     </Form.Group>
+                    <Form.Group controlId="exampleForm.ControlSelect1" className="layout">
+                        <Form.Label>Choosegame</Form.Label>
+                            <Form.Control as="select">
+                                <option>Dota2</option>
+                                <option>csgo</option>
+                                <option>genshin</option>
+                                <option>amongus</option>
+                            </Form.Control>
+                    </Form.Group>
                 </Form>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        ยกเลิก
+                        cancel
                     </Button>
                     <Button variant="primary" onClick={handleClose}>
-                        ตกลง
+                        submit
                     </Button>
                 </Modal.Footer>
             </Modal>
@@ -85,10 +94,10 @@ function NavBar() {
                 </Form>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose2}>
-                        ยกเลิก
+                        cancel
                     </Button>
                     <Button variant="primary" onClick={handleClose2}>
-                        ตกลง
+                        submit
                     </Button>
                 </Modal.Footer>
             </Modal>

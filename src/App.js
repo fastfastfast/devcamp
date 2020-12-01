@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import Home from './Home'
 import Play from './page/Play'
-import community from './page/community'
+import community from './page/Community'
 
 export default function App() {
     return (
