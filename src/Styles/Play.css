@@ -1,5 +1,4 @@
 .img-size{
-    position: absolute;
     left: -32px;
     height: 300px;
     width: 1305px;
@@ -18,4 +17,19 @@
     margin: 2% 2% 50px 2%;
     -webkit-text-stroke: 2px greenyellow;
     
+}
+
+.box {
+  margin: 40px;
+}
+
+.grid {
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.grid > div {
+  flex-basis: calc(30% - 50px);
 }

@@ -7,7 +7,7 @@ import {useEffect} from 'react'
 const fetchData = async() =>{
     const snaphot = await firebase.database().ref('/post').once('value')
     const data = snaphot.val()
-    console.log(data)
+    console.log(data.user)
 }
 
 

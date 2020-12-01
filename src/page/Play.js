@@ -1,33 +1,72 @@
-import { Card, ListGroup, Tab, Row, Col, Image } from 'react-bootstrap';
+import { Card, ListGroup, Tab, Row, Col, Image, Button, CardDeck } from 'react-bootstrap';
 import '../Styles/Play.css';
 import NavBar from '../components/NavBar';
 import Figure from 'react-bootstrap/Figure'
+// import { makeStyles } from '@material-ui/core/styles';
+// import Paper from '@material-ui/core/Paper';
+// import Grid from '@material-ui/core/Grid';
+import { firebase } from '../services/firebase'
+import { useEffect, useState } from 'react'
+
 
 function Play() {
+    const [cardInfo, setCardInfo] = useState()
+
+    // function isGame(game){
+    //     const userGame =  cardInfo.map.game
+    //     return console.log(userGame)
+    // }
+
+    const renderCard = (card, index, game) => { {/*loop display card namd and description*/}
+        // console.log(game)
+        // if(card.game == )
+        return (
+            <Card style={{ width: '18rem' }} key={index} className="box">
+                {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
+                <Card.Body>
+                    <Card.Title>{card.name}</Card.Title>
+                    <Card.Text>{card.description}</Card.Text>
+                    <Button variant="primary">booking</Button>
+                </Card.Body>
+            </Card>
+        );
+    };
+
+    useEffect(() => { {/* hook database from firebase */}
+        const fetchData = async () => {
+            const snaphot = await firebase.database().ref('/user').once('value')
+            const data = snaphot.val()
+            // console.log(data)
+            setCardInfo(data)
+        }
+        fetchData()
+    }, [])
+    // const classes = useStyles();
+
     return (
         <>
             <NavBar />
             <div className="Play">
-                <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
+                <Tab.Container id="list-group-tabs-example" defaultActiveKey="#dota2">
                     <Row>
                         <Col sm={2}>
                             <ListGroup>
-                                <ListGroup.Item action href="#link1">
+                                <ListGroup.Item action href="#dota2">
                                     <Figure.Image
                                         src="https://steamcdn-a.akamaihd.net/steam/apps/570/header.jpg?t=1605831017"
                                     />
                                 </ListGroup.Item>
-                                <ListGroup.Item action href="#link2">
+                                <ListGroup.Item action href="#csgo">
                                     <Figure.Image
                                         src="https://steamcdn-a.akamaihd.net/steam/apps/730/header.jpg?t=1605757059"
                                     />
                                 </ListGroup.Item>
-                                <ListGroup.Item action href="#link3">
+                                <ListGroup.Item action href="#amongus">
                                     <Figure.Image
                                         src="https://steamcdn-a.akamaihd.net/steam/apps/945360/header.jpg?t=1606422465"
                                     />
                                 </ListGroup.Item>
-                                <ListGroup.Item action href="#link4">
+                                <ListGroup.Item action href="#genshin">
                                     <Figure.Image
                                         src="https://www.appdisqus.com/wp-content/uploads/2020/09/00-5-1.jpg"
                                     />
@@ -36,28 +75,33 @@ function Play() {
                         </Col>
                         <Col sm={9}>
                             <Tab.Content >
-                                <Tab.Pane eventKey="#link1">
+                                <Tab.Pane eventKey="#dota2">
                                     <div class="container">
                                         <img src={`${process.env.PUBLIC_URL}/dota2.png`} className="img-size" />
                                         <h1 style={{ fontSize: "100px", fontFamily: "Sofia" }} class="top-left">DOTA2</h1>
+                                        {/* {isGame("dota2")} */}
+                                        {cardInfo && <div className="grid">{cardInfo.map(renderCard, "dota2")}</div>} {/* if cardInfo have item call rendercard */}
                                     </div>
                                 </Tab.Pane>
-                                <Tab.Pane eventKey="#link2">
+                                <Tab.Pane eventKey="#csgo">
                                     <div class="container">
                                         <img src={`${process.env.PUBLIC_URL}/csgo.jpg`} className="img-size" />
                                         <h1 style={{ fontSize: "100px", fontFamily: "Sofia" }} class="top-left">CS:GO</h1>
+                                        {cardInfo && <div className="grid">{cardInfo.map(renderCard, "csgo")}</div>} {/* if cardInfo have item call rendercard */}
                                     </div>
                                 </Tab.Pane>
-                                <Tab.Pane eventKey="#link3">
+                                <Tab.Pane eventKey="#amongus">
                                     <div class="container">
                                         <img src={`${process.env.PUBLIC_URL}/amongUs.jpg`} className="img-size" />
                                         <h1 style={{ fontSize: "100px", fontFamily: "Sofia" }} class="top-left">Among Us</h1>
+                                        {cardInfo && <div className="grid">{cardInfo.map(renderCard, "amongus")}</div>} {/* if cardInfo have item call rendercard */}
                                     </div>
                                 </Tab.Pane>
-                                <Tab.Pane eventKey="#link4">
+                                <Tab.Pane eventKey="#genshin">
                                     <div class="container">
                                         <img src={`${process.env.PUBLIC_URL}/genshin.jpg`} className="img-size" />
                                         <h1 style={{ fontSize: "100px", fontFamily: "Sofia" }} class="top-left">Genshin</h1>
+                                        {cardInfo && <div className="grid">{cardInfo.map(renderCard, "genshin")}</div>} {/* if cardInfo have item call rendercard */}
                                     </div>
                                 </Tab.Pane>
                             </Tab.Content>
@@ -66,8 +110,6 @@ function Play() {
                 </Tab.Container>
             </div>
         </>
-
-
     );
 }
 
