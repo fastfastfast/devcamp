@@ -1,4 +1,4 @@
-import { Card, ListGroup, Tab, Row, Col, Image } from 'react-bootstrap';
+import { Card, ListGroup, Tab, Row, Col, Image, Button, CardDeck } from 'react-bootstrap';
 import '../Styles/Play.css';
 import NavBar from '../components/NavBar';
 import Figure from 'react-bootstrap/Figure'
@@ -6,30 +6,42 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { firebase } from '../services/firebase'
-import {useEffect} from 'react'
+import { useEffect, useState } from 'react'
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-    },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    },
-}));
-
-const fetchData = async() =>{
-    const snaphot = await firebase.database().ref('/').once('value')
-    const data = snaphot.val()
-    console.log(data.user)
-}
 
 function Play() {
-    useEffect(() => {
+    const [cardInfo, setCardInfo] = useState()
+
+    // function isGame(game){
+    //     const userGame =  cardInfo.map.game
+    //     return console.log(userGame)
+    // }
+
+    const renderCard = (card, index, game) => { {/*loop display card namd and description*/}
+        // console.log(game)
+        // if(card.game == )
+        return (
+            <Card style={{ width: '18rem' }} key={index} className="box">
+                {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
+                <Card.Body>
+                    <Card.Title>{card.name}</Card.Title>
+                    <Card.Text>{card.description}</Card.Text>
+                    <Button variant="primary">bokking</Button>
+                </Card.Body>
+            </Card>
+        );
+    };
+
+    useEffect(() => { {/* hook database from firebase */}
+        const fetchData = async () => {
+            const snaphot = await firebase.database().ref('/user').once('value')
+            const data = snaphot.val()
+            // console.log(data)
+            setCardInfo(data)
+        }
         fetchData()
     }, [])
-    const classes = useStyles();
+    // const classes = useStyles();
 
     return (
         <>
@@ -67,20 +79,8 @@ function Play() {
                                     <div class="container">
                                         <img src={`${process.env.PUBLIC_URL}/dota2.png`} className="img-size" />
                                         <h1 style={{ fontSize: "100px", fontFamily: "Sofia" }} class="top-left">DOTA2</h1>
-                                        <Grid container spacing={3}>
-                                            <Grid item xs={3}>
-                                                <Paper className={classes.paper}>xs=3</Paper>
-                                            </Grid>
-                                            <Grid item xs={3}>
-                                                <Paper className={classes.paper}>xs=3</Paper>
-                                            </Grid>
-                                            <Grid item xs={3}>
-                                                <Paper className={classes.paper}>xs=3</Paper>
-                                            </Grid>
-                                            <Grid item xs={3}>
-                                                <Paper className={classes.paper}>xs=3</Paper>
-                                            </Grid>
-                                        </Grid>
+                                        {/* {isGame("dota2")} */}
+                                        {cardInfo && <div className="grid">{cardInfo.map(renderCard, "dota2")}</div>} {/* if cardInfo have item call rendercard */}
                                     </div>
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="#csgo">
@@ -107,8 +107,6 @@ function Play() {
                 </Tab.Container>
             </div>
         </>
-
-
     );
 }
 
