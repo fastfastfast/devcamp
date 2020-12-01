@@ -12,14 +12,8 @@ import { useEffect, useState } from 'react'
 function Play() {
     const [cardInfo, setCardInfo] = useState()
 
-    // function isGame(game){
-    //     const userGame =  cardInfo.map.game
-    //     return console.log(userGame)
-    // }
-
-    const renderCard = (card, index, game) => { {/*loop display card namd and description*/}
-        // console.log(game)
-        // if(card.game == )
+    const renderCard = (card, index) => {
+        {/*loop display card namd and description*/ }
         return (
             <Card style={{ width: '18rem' }} key={index} className="box">
                 {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
@@ -32,7 +26,8 @@ function Play() {
         );
     };
 
-    useEffect(() => { {/* hook database from firebase */}
+    useEffect(() => {
+        {/* hook database from firebase */ }
         const fetchData = async () => {
             const snaphot = await firebase.database().ref('/user').once('value')
             const data = snaphot.val()
@@ -79,26 +74,60 @@ function Play() {
                                     <div class="container">
                                         <img src={`${process.env.PUBLIC_URL}/dota2.png`} className="img-size" />
                                         <h1 style={{ fontSize: "100px", fontFamily: "Sofia" }} class="top-left">DOTA2</h1>
-                                        {/* {isGame("dota2")} */}
-                                        {cardInfo && <div className="grid">{cardInfo.map(renderCard, "dota2")}</div>} {/* if cardInfo have item call rendercard */}
+                                        {cardInfo && 
+                                            <div className="grid"> {/* if cardInfo have item  */}
+                                                {
+                                                    cardInfo
+                                                        .filter( user => (user.game).includes("dota2") ).map(renderCard) 
+                                                        /* loop if user.game have dota2 include in cardInfo call renderCard -> cardInfo  */
+                                                }
+                                            </div>
+                                        }
                                     </div>
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="#csgo">
                                     <div class="container">
                                         <img src={`${process.env.PUBLIC_URL}/csgo.jpg`} className="img-size" />
                                         <h1 style={{ fontSize: "100px", fontFamily: "Sofia" }} class="top-left">CS:GO</h1>
+                                        {cardInfo && 
+                                            <div className="grid"> {/* if cardInfo have item  */}
+                                                {
+                                                    cardInfo
+                                                        .filter( user => (user.game).includes("csgo") ).map(renderCard) 
+                                                        /* loop if user.game have csgo include in cardInfo call renderCard -> cardInfo  */
+                                                }
+                                            </div>
+                                        }
                                     </div>
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="#amongus">
                                     <div class="container">
                                         <img src={`${process.env.PUBLIC_URL}/amongUs.jpg`} className="img-size" />
                                         <h1 style={{ fontSize: "100px", fontFamily: "Sofia" }} class="top-left">Among Us</h1>
+                                        {cardInfo && 
+                                            <div className="grid"> {/* if cardInfo have item  */}
+                                                {
+                                                    cardInfo
+                                                        .filter( user => (user.game).includes("amongus") ).map(renderCard) 
+                                                        /* loop if user.game have amongUs include in cardInfo call renderCard -> cardInfo  */
+                                                }
+                                            </div>
+                                        }
                                     </div>
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="#genshin">
                                     <div class="container">
                                         <img src={`${process.env.PUBLIC_URL}/genshin.jpg`} className="img-size" />
                                         <h1 style={{ fontSize: "100px", fontFamily: "Sofia" }} class="top-left">Genshin</h1>
+                                        {cardInfo && 
+                                            <div className="grid"> {/* if cardInfo have item  */}
+                                                {
+                                                    cardInfo
+                                                        .filter( user => (user.game).includes("genshin") ).map(renderCard) 
+                                                        /* loop if user.game have genshin include in cardInfo call renderCard -> cardInfo  */
+                                                }
+                                            </div>
+                                        }
                                     </div>
                                 </Tab.Pane>
                             </Tab.Content>
