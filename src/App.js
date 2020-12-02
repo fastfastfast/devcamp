@@ -6,6 +6,8 @@ import {
 import Home from './Home'
 import Play from './page/Play'
 import Community from './page/Community'
+import Profile from './page/Profile'
+
 
 export default function App() {
     return (
@@ -14,6 +16,7 @@ export default function App() {
                 <Route exact path="/" component={Home} />
                 <Route path="/play" component={Play} />
                 <Route path="/community" component={Community} />
+                <Route path="/profile" component={Profile} />
             </Switch>
         </div>
     )

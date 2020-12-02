@@ -17,6 +17,10 @@ function NavBar() {
     const handleShow2 = () => setShow1(true);
     const handleClose2 = () => setShow1(false);
 
+    const [show2, setShow3] = useState(false);
+    const handleClose3 = () => setShow3(false);
+    const handleShow3 = () => setShow3(true);
+
     return (
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -27,12 +31,16 @@ function NavBar() {
                         <Link class="nav-link" to="/"> Home</Link>
                         <Link class="nav-link" to="/play">Play</Link>
                         <Link class="nav-link" to="/community">Community</Link>
+                        <Link class="nav-link" to="/profile">Profile</Link>
                     </Nav>
                     <Nav>
+                        <Nav.Link eventKey={2} href="#memes" onClick={handleShow3}>
+                            Notiflication
+                        </Nav.Link>
                         <Nav.Link href="#deets" onClick={handleShow2}>Login</Nav.Link>
                         <Nav.Link eventKey={2} href="#memes" onClick={handleShow}>
                             Register
-                    </Nav.Link>
+                        </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
@@ -99,6 +107,23 @@ function NavBar() {
                     <Button variant="primary" onClick={handleClose2}>
                         submit
                     </Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal show={show2} onHide={handleClose3}>
+                <Modal.Header closeButton>
+                <Modal.Title>History</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Sern</Modal.Body>
+                <Modal.Body>12/2/2020</Modal.Body>
+                <Modal.Body>12:00 PM</Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose3}>
+                    Close
+                </Button>
+                <Button variant="primary" onClick={handleClose3}>
+                    Save Changes
+                </Button>
                 </Modal.Footer>
             </Modal>
         </>
