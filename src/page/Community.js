@@ -7,15 +7,9 @@ import '../Styles/Community.css';
 
 function Community() {
     const [postInfo, setPostInfo] = useState()
-
-    const onSubmit = e => {
-        e.preventDefault()
-        console.log(e.target.textField.value);
-    }
+    const csgoItems = []
 
     const renderCard = (card, index) => {
-        // console.log(card.infoPost.name)
-        {/*loop display card namd and description*/ }
         return (
             <Card style={{ width: '50rem' }} className="post-card">
                 <Card.Body>
@@ -25,6 +19,12 @@ function Community() {
             </Card>
         );
     };
+
+    const onSubmit = (gameName, e) => {
+        e.preventDefault()
+        console.log(e.target.textField.value);
+        firebase.database().ref(`/game/${gameName}`).push({infoPost: {name : "pang", post : e.target.textField.value}})
+    }
 
     useEffect(() => {
         {/* hook database from firebase */ }
@@ -70,7 +70,7 @@ function Community() {
                         <Col sm={9}>
                             <Tab.Content>
                                 <Tab.Pane eventKey="#dota2">
-                                    <Form onSubmit={onSubmit}>
+                                    <Form onSubmit={(e) => onSubmit("dota2", e)}>
                                         <Form.Group controlId="exampleForm.ControlTextarea1">
                                             <Form.Label style={{ marginTop: "20px" }}>Post</Form.Label>
                                             <Form.Control name="textField" as="textarea" rows={3} />
@@ -80,14 +80,14 @@ function Community() {
                                     {postInfo &&
                                         <div> {/* if postInfo have item  */}
                                             {
-                                                postInfo.dota2.map(renderCard)
+                                                Object.keys(postInfo.dota2).map(item => renderCard(postInfo.dota2[item]))
                                                 /* loop if user.game have dota2 include in postInfo call renderCard -> postInfo  */
                                             }
                                         </div>
                                     }
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="#csgo">
-                                    <Form onSubmit={onSubmit}>
+                                    <Form onSubmit={(e) => onSubmit("csgo", e)}>
                                         <Form.Group controlId="exampleForm.ControlTextarea1">
                                             <Form.Label style={{ marginTop: "20px" }}>Post</Form.Label>
                                             <Form.Control name="textField" as="textarea" rows={3} />
@@ -97,14 +97,14 @@ function Community() {
                                     {postInfo &&
                                         <div> {/* if postInfo have item  */}
                                             {
-                                                postInfo.csgo.map(renderCard)
-                                                /* loop if user.game have csgo include in postInfo call renderCard -> postInfo  */
+                                                Object.keys(postInfo.csgo).map(item => renderCard(postInfo.csgo[item]))
+                                                // csgoItems.map(renderCard)
                                             }
                                         </div>
                                     }
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="#amongus">
-                                    <Form onSubmit={onSubmit}>
+                                    <Form onSubmit={(e) => onSubmit("amongus", e)}>
                                         <Form.Group controlId="exampleForm.ControlTextarea1">
                                             <Form.Label style={{ marginTop: "20px" }}>Post</Form.Label>
                                             <Form.Control name="textField" as="textarea" rows={3} />
@@ -114,14 +114,14 @@ function Community() {
                                     {postInfo &&
                                         <div> {/* if postInfo have item  */}
                                             {
-                                                postInfo.amongus.map(renderCard)
+                                                Object.keys(postInfo.amongus).map(item => renderCard(postInfo.amongus[item]))
                                                 /* loop if user.game have amongus include in postInfo call renderCard -> postInfo  */
                                             }
                                         </div>
                                     }
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="#genshin">
-                                    <Form onSubmit={onSubmit}>
+                                    <Form onSubmit={(e) => onSubmit("genshin", e)}>
                                         <Form.Group controlId="exampleForm.ControlTextarea1">
                                             <Form.Label style={{ marginTop: "20px" }}>Post</Form.Label>
                                             <Form.Control name="textField" as="textarea" rows={3} />
@@ -131,7 +131,7 @@ function Community() {
                                     {postInfo &&
                                         <div> {/* if postInfo have item  */}
                                             {
-                                                postInfo.genshin.map(renderCard)
+                                                Object.keys(postInfo.genshin).map(item => renderCard(postInfo.genshin[item]))
                                                 /* loop if user.game have genshin include in postInfo call renderCard -> postInfo  */
                                             }
                                         </div>
