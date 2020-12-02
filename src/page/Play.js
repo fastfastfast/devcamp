@@ -14,13 +14,13 @@ function Play() {
     const handleShow = () => setShow(true);
     const [date, onChange] = useState(new Date());
     const [time, onChange1] = useState();
-    const [cardName, setCardName] = useState();
+    // const [cardName, setCardName] = useState();
 
     const [bookingGameName, setbookingGameName] = useState("dota2");
 
     const onSubmitDate = e => {
         e.preventDefault()
-        firebase.database().ref(`/booking/${cardName}`).push({date : date.toString().substring(0, 15), game : bookingGameName, name: "two", time: time})
+        firebase.database().ref(`/booking/fast`).push({date : date.toString().substring(0, 15), game : bookingGameName, name: "two", time: time})
         console.log(date);
         console.log(time);
     }
