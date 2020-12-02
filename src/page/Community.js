@@ -22,7 +22,7 @@ function Community() {
     const onSubmit = (gameName, e) => {
         e.preventDefault()
         console.log(e.target.textField.value);
-        firebase.database().ref(`/game/${gameName}`).push({infoPost: {name : "pang", post : e.target.textField.value}})
+        firebase.database().ref(`/game/${gameName}`).push({infoPost: {name : "5678", post : e.target.textField.value}})
     }
 
     useEffect(() => {
@@ -64,6 +64,11 @@ function Community() {
                                         src="https://www.appdisqus.com/wp-content/uploads/2020/09/00-5-1.jpg"
                                     />
                                 </ListGroup.Item>
+                                <ListGroup.Item action href="#hon">
+                                    <Figure.Image
+                                        src="https://s.isanook.com/ga/0/ud/190/954848/hon.jpg"
+                                    />
+                                </ListGroup.Item>
                             </ListGroup>
                         </Col>
                         <Col sm={9}>
@@ -74,7 +79,7 @@ function Community() {
                                             <Form.Label style={{ marginTop: "20px" }}>Post</Form.Label>
                                             <Form.Control name="textField" as="textarea" rows={3} />
                                         </Form.Group>
-                                        <Button as="input" type="submit" value="Submit" />
+                                        <Button as="input" type="submit" value="post" />
                                     </Form>
                                     {postInfo &&
                                         <div> {/* if postInfo have item  */}
@@ -91,10 +96,10 @@ function Community() {
                                             <Form.Label style={{ marginTop: "20px" }}>Post</Form.Label>
                                             <Form.Control name="textField" as="textarea" rows={3} />
                                         </Form.Group>
-                                        <Button as="input" type="submit" value="Submit" />
+                                        <Button as="input" type="submit" value="post" />
                                     </Form>
                                     {postInfo &&
-                                        <div> {/* if postInfo have item  */}
+                                        <div> 
                                             {
                                                 Object.keys(postInfo.csgo).reverse().map(item => renderCard(postInfo.csgo[item]))
                                                 // csgoItems.map(renderCard)
@@ -108,7 +113,7 @@ function Community() {
                                             <Form.Label style={{ marginTop: "20px" }}>Post</Form.Label>
                                             <Form.Control name="textField" as="textarea" rows={3} />
                                         </Form.Group>
-                                        <Button as="input" type="submit" value="Submit" />
+                                        <Button as="input" type="submit" value="post" />
                                     </Form>
                                     {postInfo &&
                                         <div> {/* if postInfo have item  */}
@@ -125,13 +130,31 @@ function Community() {
                                             <Form.Label style={{ marginTop: "20px" }}>Post</Form.Label>
                                             <Form.Control name="textField" as="textarea" rows={3} />
                                         </Form.Group>
-                                        <Button as="input" type="submit" value="Submit" />
+                                        <Button as="input" type="submit" value="post" />
                                     </Form>
+                                    {/* console.log(postInfo.); */}
                                     {postInfo &&
                                         <div> {/* if postInfo have item  */}
                                             {
                                                 Object.keys(postInfo.genshin).reverse().map(item => renderCard(postInfo.genshin[item]))
                                                 /* loop if user.game have genshin include in postInfo call renderCard -> postInfo  */
+                                            }
+                                        </div>
+                                    }
+                                </Tab.Pane>
+                                <Tab.Pane eventKey="#hon">
+                                    <Form onSubmit={(e) => onSubmit("hon", e)}>
+                                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                                            <Form.Label style={{ marginTop: "20px" }}>Post</Form.Label>
+                                            <Form.Control name="textField" as="textarea" rows={3} />
+                                        </Form.Group>
+                                        <Button as="input" type="submit" value="post" />
+                                    </Form>
+                                    {postInfo &&
+                                        <div> {/* if postInfo have item  */}
+                                            {
+                                                Object.keys(postInfo.hon).reverse().map(item => renderCard(postInfo.hon[item]))
+                                                /* loop if user.game have hon include in postInfo call renderCard -> postInfo  */
                                             }
                                         </div>
                                     }

@@ -77,7 +77,7 @@ function Play() {
                     </Modal>
                 </Card.Body>
                 <Card.Footer>
-                    <small className="text-muted">{`contact: ${card.contact}`}</small>
+                    <small className="text-muted">{`contact ${card.contact}`}</small>
                 </Card.Footer>
             </Card>
         );
@@ -120,6 +120,11 @@ function Play() {
                                 <ListGroup.Item action href="#genshin" onClick={() => setbookingGameName("genshin")}>
                                     <Figure.Image
                                         src="https://www.appdisqus.com/wp-content/uploads/2020/09/00-5-1.jpg"
+                                    />
+                                </ListGroup.Item>
+                                <ListGroup.Item action href="#hon" onClick={() => setbookingGameName("hon")}>
+                                    <Figure.Image
+                                        src="https://s.isanook.com/ga/0/ud/190/954848/hon.jpg"
                                     />
                                 </ListGroup.Item>
                             </ListGroup>
@@ -179,6 +184,20 @@ function Play() {
                                                 {
                                                     cardInfo.filter(user => (user.game).includes("genshin")).map(renderCard)
                                                     /* loop if user.game have genshin include in cardInfo call renderCard -> cardInfo  */
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                </Tab.Pane>
+                                <Tab.Pane eventKey="#hon">
+                                    <div class="container">
+                                        <img src={`${process.env.PUBLIC_URL}/hon.jpg`} className="img-size" />
+                                        <h1 style={{ fontSize: "100px", fontFamily: "Sofia" }} class="top-left">HON</h1>
+                                        {cardInfo &&
+                                            <div className="grid">
+                                                {
+                                                    cardInfo.filter(user => (user.game).includes("hon")).map(renderCard)
+                                                    /* loop if user.game have hon include in cardInfo call renderCard -> cardInfo  */
                                                 }
                                             </div>
                                         }
