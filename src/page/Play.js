@@ -1,4 +1,4 @@
-import { Card, ListGroup, Tab, Row, Col, Image, Button, CardDeck,Modal,Form } from 'react-bootstrap';
+import { Card, ListGroup, Tab, Row, Col, Image, Button, CardDeck, Modal, Form } from 'react-bootstrap';
 import '../Styles/Play.css';
 import NavBar from '../components/NavBar';
 import Figure from 'react-bootstrap/Figure'
@@ -20,7 +20,7 @@ function Play() {
 
     const onSubmitDate = e => {
         e.preventDefault()
-        firebase.database().ref(`/booking/${cardName}`).push({date : date.toString().substring(0, 15), game : bookingGameName, name: "two", time: time})
+        firebase.database().ref(`/booking/${cardName}`).push({ date: date.toString().substring(0, 15), game: bookingGameName, name: "two", time: time })
         console.log(date);
         console.log(time);
     }
@@ -31,44 +31,48 @@ function Play() {
             <Card style={{ width: '18rem' }} key={index} className="box">
                 {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                 <Card.Body>
-                    <Card.Title>{card.name}</Card.Title>
-                    <Card.Text>{card.description}</Card.Text>
+                    <Card.Title>{`Name: ${card.name}`}</Card.Title>
+                    <Card.Text>{`Description: ${card.description}`}</Card.Text>
+                    <Card.Text>{card.target}</Card.Text>
                     {/* <Button variant="primary" onClick={handleShow} onClick={() => setCardName(card.name)}></Button> */}
                     <Form onClick={handleShow} onClick={() => setCardName(card.name)}>
                         <Button variant="primary" onClick={handleShow}>
-                        Booking
+                            Booking
                     </Button></Form>
-                    
+
                     <Modal show={show} onHide={handleClose} animation={false}>
                         <Modal.Header closeButton>
-                        <Modal.Title>Selected Time</Modal.Title>
+                            <Modal.Title>Selected Time</Modal.Title>
                         </Modal.Header>
                         <h4>choose day</h4>
                         <Form onSubmit={onSubmitDate}>
-                        <div>
-                        <DatePicker
-                            onChange={onChange}
-                            date={date}
-                        />
-                        </div>
-                        <h4>choose time</h4>
-                        <div>
-                        <TimePicker
-                            onChange={onChange1}
-                            time={time}
-                        />
-                        </div>
-                        <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Close
+                            <div>
+                                <DatePicker
+                                    onChange={onChange}
+                                    date={date}
+                                />
+                            </div>
+                            <h4>choose time</h4>
+                            <div>
+                                <TimePicker
+                                    onChange={onChange1}
+                                    time={time}
+                                />
+                            </div>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={handleClose}>
+                                    Close
                         </Button>
-                        <Button variant="primary"  type="submit"  >
-                            Submit
+                                <Button variant="primary" type="submit"  >
+                                    Submit
                         </Button>
-                        </Modal.Footer>
+                            </Modal.Footer>
                         </Form>
                     </Modal>
                 </Card.Body>
+                <Card.Footer>
+                    <small className="text-muted">{`contact: ${card.contact}`}</small>
+                </Card.Footer>
             </Card>
         );
     };
@@ -83,7 +87,7 @@ function Play() {
         }
         fetchData()
     }, [])
- 
+
     return (
         <>
             <NavBar />
@@ -120,11 +124,11 @@ function Play() {
                                     <div class="container">
                                         <img src={`${process.env.PUBLIC_URL}/dota2.png`} className="img-size" />
                                         <h1 style={{ fontSize: "100px", fontFamily: "Sofia" }} class="top-left">DOTA2</h1>
-                                        {cardInfo && 
+                                        {cardInfo &&
                                             <div className="grid"> {/* if cardInfo have item  */}
                                                 {
-                                                    cardInfo.filter( user => (user.game).includes("dota2") ).map(renderCard) 
-                                                        /* loop if user.game have dota2 include in cardInfo call renderCard -> cardInfo  */
+                                                    cardInfo.filter(user => (user.game).includes("dota2")).map(renderCard)
+                                                    /* loop if user.game have dota2 include in cardInfo call renderCard -> cardInfo  */
                                                 }
                                             </div>
                                         }
@@ -134,13 +138,13 @@ function Play() {
                                     <div class="container">
                                         <img src={`${process.env.PUBLIC_URL}/csgo.jpg`} className="img-size" />
                                         <h1 style={{ fontSize: "100px", fontFamily: "Sofia" }} class="top-left">CS:GO</h1>
-                                        {cardInfo && 
+                                        {cardInfo &&
                                             <div className="grid" > {/* if cardInfo have item  */}
-                                            
+
                                                 {
-                                                    
-                                                    cardInfo.filter( user => (user.game).includes("csgo") ).map(renderCard) 
-                                                        /* loop if user.game have csgo include in cardInfo call renderCard -> cardInfo  */
+
+                                                    cardInfo.filter(user => (user.game).includes("csgo")).map(renderCard)
+                                                    /* loop if user.game have csgo include in cardInfo call renderCard -> cardInfo  */
                                                 }
                                             </div>
                                         }
@@ -150,11 +154,11 @@ function Play() {
                                     <div class="container">
                                         <img src={`${process.env.PUBLIC_URL}/amongUs.jpg`} className="img-size" />
                                         <h1 style={{ fontSize: "100px", fontFamily: "Sofia" }} class="top-left">Among Us</h1>
-                                        {cardInfo && 
+                                        {cardInfo &&
                                             <div className="grid"> {/* if cardInfo have item  */}
                                                 {
-                                                    cardInfo.filter( user => (user.game).includes("amongus") ).map(renderCard) 
-                                                        /* loop if user.game have amongUs include in cardInfo call renderCard -> cardInfo  */
+                                                    cardInfo.filter(user => (user.game).includes("amongus")).map(renderCard)
+                                                    /* loop if user.game have amongUs include in cardInfo call renderCard -> cardInfo  */
                                                 }
                                             </div>
                                         }
@@ -164,11 +168,11 @@ function Play() {
                                     <div class="container">
                                         <img src={`${process.env.PUBLIC_URL}/genshin.jpg`} className="img-size" />
                                         <h1 style={{ fontSize: "100px", fontFamily: "Sofia" }} class="top-left">Genshin</h1>
-                                        {cardInfo && 
+                                        {cardInfo &&
                                             <div className="grid">
                                                 {
-                                                    cardInfo.filter( user => (user.game).includes("genshin") ).map(renderCard) 
-                                                        /* loop if user.game have genshin include in cardInfo call renderCard -> cardInfo  */
+                                                    cardInfo.filter(user => (user.game).includes("genshin")).map(renderCard)
+                                                    /* loop if user.game have genshin include in cardInfo call renderCard -> cardInfo  */
                                                 }
                                             </div>
                                         }
