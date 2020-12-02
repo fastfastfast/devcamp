@@ -114,17 +114,20 @@ function NavBar() {
                 <Modal.Header closeButton>
                 <Modal.Title>History</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Sern</Modal.Body>
+                <Modal.Body>Sern want to play with you</Modal.Body>
                 <Modal.Body>12/2/2020</Modal.Body>
                 <Modal.Body>12:00 PM</Modal.Body>
-                <Modal.Footer>
+                <Button variant="primary" onClick={handleClose2}>
+                        submit
+                </Button>
+                {/* <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose3}>
                     Close
                 </Button>
                 <Button variant="primary" onClick={handleClose3}>
                     Save Changes
                 </Button>
-                </Modal.Footer>
+                </Modal.Footer> */}
             </Modal>
         </>
     )
