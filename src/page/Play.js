@@ -14,13 +14,13 @@ function Play() {
     const handleShow = () => setShow(true);
     const [date, onChange] = useState(new Date());
     const [time, onChange1] = useState();
-    // const [cardName, setCardName] = useState();
+    const [cardName, setCardName] = useState();
 
     const [bookingGameName, setbookingGameName] = useState("dota2");
 
     const onSubmitDate = e => {
         e.preventDefault()
-        firebase.database().ref(`/booking/fast`).push({date : date.toString().substring(0, 15), game : bookingGameName, name: "two", time: time})
+        firebase.database().ref(`/booking/${cardName}`).push({date : date.toString().substring(0, 15), game : bookingGameName, name: "two", time: time})
         console.log(date);
         console.log(time);
     }
@@ -33,16 +33,17 @@ function Play() {
                 <Card.Body>
                     <Card.Title>{card.name}</Card.Title>
                     <Card.Text>{card.description}</Card.Text>
-                    <Button variant="primary" onClick={handleShow}>
+                    {/* <Button variant="primary" onClick={handleShow} onClick={() => setCardName(card.name)}></Button> */}
+                    <Form onClick={handleShow} onClick={() => setCardName(card.name)}>
+                        <Button variant="primary" onClick={handleShow}>
                         Booking
-                    </Button>
+                    </Button></Form>
+                    
                     <Modal show={show} onHide={handleClose} animation={false}>
                         <Modal.Header closeButton>
                         <Modal.Title>Selected Time</Modal.Title>
                         </Modal.Header>
-                        <h4>
-                            choose day
-                        </h4>
+                        <h4>choose day</h4>
                         <Form onSubmit={onSubmitDate}>
                         <div>
                         <DatePicker
@@ -50,9 +51,7 @@ function Play() {
                             date={date}
                         />
                         </div>
-                        <h4>
-                            choose time
-                        </h4>
+                        <h4>choose time</h4>
                         <div>
                         <TimePicker
                             onChange={onChange1}
@@ -84,8 +83,7 @@ function Play() {
         }
         fetchData()
     }, [])
-    // const classes = useStyles();
-
+ 
     return (
         <>
             <NavBar />

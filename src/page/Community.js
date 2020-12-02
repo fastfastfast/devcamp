@@ -79,7 +79,7 @@ function Community() {
                                     {postInfo &&
                                         <div> {/* if postInfo have item  */}
                                             {
-                                                Object.keys(postInfo.dota2).map(item => renderCard(postInfo.dota2[item]))
+                                                Object.keys(postInfo.dota2).reverse().map(item => renderCard(postInfo.dota2[item]))
                                                 /* loop if user.game have dota2 include in postInfo call renderCard -> postInfo  */
                                             }
                                         </div>
@@ -96,7 +96,7 @@ function Community() {
                                     {postInfo &&
                                         <div> {/* if postInfo have item  */}
                                             {
-                                                Object.keys(postInfo.csgo).map(item => renderCard(postInfo.csgo[item]))
+                                                Object.keys(postInfo.csgo).reverse().map(item => renderCard(postInfo.csgo[item]))
                                                 // csgoItems.map(renderCard)
                                             }
                                         </div>
@@ -113,7 +113,7 @@ function Community() {
                                     {postInfo &&
                                         <div> {/* if postInfo have item  */}
                                             {
-                                                Object.keys(postInfo.amongus).map(item => renderCard(postInfo.amongus[item]))
+                                                Object.keys(postInfo.amongus).reverse().map(item => renderCard(postInfo.amongus[item]))
                                                 /* loop if user.game have amongus include in postInfo call renderCard -> postInfo  */
                                             }
                                         </div>
@@ -130,7 +130,7 @@ function Community() {
                                     {postInfo &&
                                         <div> {/* if postInfo have item  */}
                                             {
-                                                Object.keys(postInfo.genshin).map(item => renderCard(postInfo.genshin[item]))
+                                                Object.keys(postInfo.genshin).reverse().map(item => renderCard(postInfo.genshin[item]))
                                                 /* loop if user.game have genshin include in postInfo call renderCard -> postInfo  */
                                             }
                                         </div>
