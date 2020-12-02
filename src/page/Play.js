@@ -31,8 +31,9 @@ function Play() {
             <Card style={{ width: '18rem' }} key={index} className="box">
                 {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                 <Card.Body>
-                    <Card.Title>{`Name: ${card.name}`}</Card.Title>
+                    <Card.Title>{`name : ${card.name}`}</Card.Title>
                     <Card.Text>{`Description: ${card.description}`}</Card.Text>
+                    <Card.Text>{`rank: ${card.rank}`}</Card.Text>
                     <Card.Text>{card.target}</Card.Text>
                     {/* <Button variant="primary" onClick={handleShow} onClick={() => setCardName(card.name)}></Button> */}
                     <Form onClick={handleShow} onClick={() => setCardName(card.name)}>
@@ -44,14 +45,17 @@ function Play() {
                         <Modal.Header closeButton>
                             <Modal.Title>Selected Time</Modal.Title>
                         </Modal.Header>
-                        <h4>choose day</h4>
-                        <Form onSubmit={onSubmitDate}>
+                        
+                        <Form onSubmit={onSubmitDate} style={{textAlign: "center"}}>
+                            <br/>
+                            <h4>choose day</h4>
                             <div>
                                 <DatePicker
                                     onChange={onChange}
                                     date={date}
                                 />
                             </div>
+                            <br/>
                             <h4>choose time</h4>
                             <div>
                                 <TimePicker
@@ -59,6 +63,8 @@ function Play() {
                                     time={time}
                                 />
                             </div>
+                            <br/>
+                            <br/>
                             <Modal.Footer>
                                 <Button variant="secondary" onClick={handleClose}>
                                     Close
