@@ -1,4 +1,4 @@
-import { Card, ListGroup, Tab, Row, Col, Image, Button, CardDeck,Modal } from 'react-bootstrap';
+import { Card, ListGroup, Tab, Row, Col, Image, Button, CardDeck,Modal,Form } from 'react-bootstrap';
 import '../Styles/Play.css';
 import NavBar from '../components/NavBar';
 import Figure from 'react-bootstrap/Figure'
@@ -14,10 +14,16 @@ function Play() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [value, onChange] = useState(new Date());
-    const [value1, onChange1] = useState('10:00');
+    const [value1, onChange1] = useState();
+    const [startDate, setStartDate] = useState(null);
 
 
-    
+    const onSubmitDate = e => {
+        e.preventDefault()
+        console.log(value);
+        console.log(value1);
+        // console.log(e.target.value1.value);
+    }
 
     const renderCard = (card, index) => {
         {/*loop display card namd and description*/ }
@@ -37,6 +43,7 @@ function Play() {
                         <h4>
                             choose day
                         </h4>
+                        <Form onSubmit={onSubmitDate}>
                         <div>
                         <DatePicker
                             onChange={onChange}
@@ -48,7 +55,8 @@ function Play() {
                         </h4>
                         <div>
                         <TimePicker
-                            onChange1={onChange1}
+                            onChange={onChange1}
+                            name="time"
                             value1={value1}
                         />
                         </div>
@@ -56,10 +64,11 @@ function Play() {
                         <Button variant="secondary" onClick={handleClose}>
                             Close
                         </Button>
-                        <Button variant="primary" onClick={handleClose}>
-                            Save Changes
+                        <Button variant="primary"  type="submit"  >
+                            Submit
                         </Button>
                         </Modal.Footer>
+                        </Form>
                     </Modal>
                 </Card.Body>
             </Card>
