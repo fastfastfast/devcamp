@@ -2,9 +2,6 @@ import { Card, ListGroup, Tab, Row, Col, Image, Button, CardDeck } from 'react-b
 import '../Styles/Play.css';
 import NavBar from '../components/NavBar';
 import Figure from 'react-bootstrap/Figure'
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
 import { firebase } from '../services/firebase'
 import { useEffect, useState } from 'react'
 
@@ -77,8 +74,7 @@ function Play() {
                                         {cardInfo && 
                                             <div className="grid"> {/* if cardInfo have item  */}
                                                 {
-                                                    cardInfo
-                                                        .filter( user => (user.game).includes("dota2") ).map(renderCard) 
+                                                    cardInfo.filter( user => (user.game).includes("dota2") ).map(renderCard) 
                                                         /* loop if user.game have dota2 include in cardInfo call renderCard -> cardInfo  */
                                                 }
                                             </div>
@@ -92,8 +88,7 @@ function Play() {
                                         {cardInfo && 
                                             <div className="grid"> {/* if cardInfo have item  */}
                                                 {
-                                                    cardInfo
-                                                        .filter( user => (user.game).includes("csgo") ).map(renderCard) 
+                                                    cardInfo.filter( user => (user.game).includes("csgo") ).map(renderCard) 
                                                         /* loop if user.game have csgo include in cardInfo call renderCard -> cardInfo  */
                                                 }
                                             </div>
@@ -107,8 +102,7 @@ function Play() {
                                         {cardInfo && 
                                             <div className="grid"> {/* if cardInfo have item  */}
                                                 {
-                                                    cardInfo
-                                                        .filter( user => (user.game).includes("amongus") ).map(renderCard) 
+                                                    cardInfo.filter( user => (user.game).includes("amongus") ).map(renderCard) 
                                                         /* loop if user.game have amongUs include in cardInfo call renderCard -> cardInfo  */
                                                 }
                                             </div>
@@ -122,8 +116,7 @@ function Play() {
                                         {cardInfo && 
                                             <div className="grid"> {/* if cardInfo have item  */}
                                                 {
-                                                    cardInfo
-                                                        .filter( user => (user.game).includes("genshin") ).map(renderCard) 
+                                                    cardInfo.filter( user => (user.game).includes("genshin") ).map(renderCard) 
                                                         /* loop if user.game have genshin include in cardInfo call renderCard -> cardInfo  */
                                                 }
                                             </div>
