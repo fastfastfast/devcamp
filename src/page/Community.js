@@ -7,7 +7,6 @@ import '../Styles/Community.css';
 
 function Community() {
     const [postInfo, setPostInfo] = useState()
-    const csgoItems = []
 
     const renderCard = (card, index) => {
         return (

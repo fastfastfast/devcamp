@@ -7,6 +7,9 @@ function Proflie(){
         <NavBar/>
         <div className="profile" >
         <Card body style= {{ marginTop: "20px",marginLeft: "20px",marginRight: "20px",backgroundColor: "grey"}}>
+            <h1>
+                Profile
+            </h1>
             <h4>
                 Name:Sern
             </h4>
@@ -15,6 +18,9 @@ function Proflie(){
             </h4>        
         </Card>
         <Card body style= {{ marginTop: "20px",marginLeft: "20px",marginRight: "20px",backgroundColor: "grey"}}>
+                <h1>
+                    History
+                </h1>
         <CardDeck>
         <Card>
             <Card.Body>
@@ -63,7 +69,7 @@ function Proflie(){
         </Card>
         </CardDeck>
         </Card>
-        <Card body style= {{ marginTop: "20px",marginLeft: "20px",marginRight: "20px",backgroundColor: "grey"}}>
+        <Card body style= {{ marginTop: "20px",marginLeft: "20px",marginRight: "20px",backgroundColor: "grey",marginButtom: "20px"}}>
             <h2>
                 My Games
             </h2>

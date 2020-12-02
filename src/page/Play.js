@@ -1,4 +1,4 @@
-import { Card, ListGroup, Tab, Row, Col, Image, Button, CardDeck,Modal,Form } from 'react-bootstrap';
+import { Card, ListGroup, Tab, Row, Col, Image, Button, CardDeck, Modal, Form } from 'react-bootstrap';
 import '../Styles/Play.css';
 import NavBar from '../components/NavBar';
 import Figure from 'react-bootstrap/Figure'
@@ -7,22 +7,22 @@ import { useEffect, useState } from 'react'
 import DatePicker from 'react-date-picker';
 import TimePicker from 'react-time-picker';
 
-
 function Play() {
     const [cardInfo, setCardInfo] = useState()
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const [value, onChange] = useState(new Date());
-    const [value1, onChange1] = useState();
-    const [startDate, setStartDate] = useState(null);
+    const [date, onChange] = useState(new Date());
+    const [time, onChange1] = useState();
+    const [cardName, setCardName] = useState();
 
+    const [bookingGameName, setbookingGameName] = useState("dota2");
 
     const onSubmitDate = e => {
         e.preventDefault()
-        console.log(value);
-        console.log(value1);
-        // console.log(e.target.value1.value);
+        firebase.database().ref(`/booking/${cardName}`).push({ date: date.toString().substring(0, 15), game: bookingGameName, name: "two", time: time })
+        console.log(date);
+        console.log(time);
     }
 
     const renderCard = (card, index) => {
@@ -31,46 +31,54 @@ function Play() {
             <Card style={{ width: '18rem' }} key={index} className="box">
                 {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                 <Card.Body>
-                    <Card.Title>{card.name}</Card.Title>
-                    <Card.Text>{card.description}</Card.Text>
-                    <Button variant="primary" onClick={handleShow}>
-                        Booking
-                    </Button>
+                    <Card.Title>{`name : ${card.name}`}</Card.Title>
+                    <Card.Text>{`Description: ${card.description}`}</Card.Text>
+                    <Card.Text>{`rank: ${card.rank}`}</Card.Text>
+                    <Card.Text>{card.target}</Card.Text>
+                    {/* <Button variant="primary" onClick={handleShow} onClick={() => setCardName(card.name)}></Button> */}
+                    <Form onClick={handleShow} onClick={() => setCardName(card.name)}>
+                        <Button variant="primary" onClick={handleShow}>
+                            Booking
+                    </Button></Form>
+
                     <Modal show={show} onHide={handleClose} animation={false}>
                         <Modal.Header closeButton>
-                        <Modal.Title>Selected Time</Modal.Title>
+                            <Modal.Title>Selected Time</Modal.Title>
                         </Modal.Header>
-                        <h4>
-                            choose day
-                        </h4>
-                        <Form onSubmit={onSubmitDate}>
-                        <div>
-                        <DatePicker
-                            onChange={onChange}
-                            value={value}
-                        />
-                        </div>
-                        <h4>
-                            choose time
-                        </h4>
-                        <div>
-                        <TimePicker
-                            onChange={onChange1}
-                            name="time"
-                            value1={value1}
-                        />
-                        </div>
-                        <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Close
+                        
+                        <Form onSubmit={onSubmitDate} style={{textAlign: "center"}}>
+                            <br/>
+                            <h4>choose day</h4>
+                            <div>
+                                <DatePicker
+                                    onChange={onChange}
+                                    date={date}
+                                />
+                            </div>
+                            <br/>
+                            <h4>choose time</h4>
+                            <div>
+                                <TimePicker
+                                    onChange={onChange1}
+                                    time={time}
+                                />
+                            </div>
+                            <br/>
+                            <br/>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={handleClose}>
+                                    Close
                         </Button>
-                        <Button variant="primary"  type="submit"  >
-                            Submit
+                                <Button variant="primary" type="submit"  >
+                                    Submit
                         </Button>
-                        </Modal.Footer>
+                            </Modal.Footer>
                         </Form>
                     </Modal>
                 </Card.Body>
+                <Card.Footer>
+                    <small className="text-muted">{`contact: ${card.contact}`}</small>
+                </Card.Footer>
             </Card>
         );
     };
@@ -85,7 +93,6 @@ function Play() {
         }
         fetchData()
     }, [])
-    // const classes = useStyles();
 
     return (
         <>
@@ -95,22 +102,22 @@ function Play() {
                     <Row>
                         <Col sm={2}>
                             <ListGroup>
-                                <ListGroup.Item action href="#dota2">
+                                <ListGroup.Item action href="#dota2" onClick={() => setbookingGameName("dota2")}>
                                     <Figure.Image
                                         src="https://steamcdn-a.akamaihd.net/steam/apps/570/header.jpg?t=1605831017"
                                     />
                                 </ListGroup.Item>
-                                <ListGroup.Item action href="#csgo">
+                                <ListGroup.Item action href="#csgo" onClick={() => setbookingGameName("csgo")}>
                                     <Figure.Image
                                         src="https://steamcdn-a.akamaihd.net/steam/apps/730/header.jpg?t=1605757059"
                                     />
                                 </ListGroup.Item>
-                                <ListGroup.Item action href="#amongus">
+                                <ListGroup.Item action href="#amongus" onClick={() => setbookingGameName("amongus")}>
                                     <Figure.Image
                                         src="https://steamcdn-a.akamaihd.net/steam/apps/945360/header.jpg?t=1606422465"
                                     />
                                 </ListGroup.Item>
-                                <ListGroup.Item action href="#genshin">
+                                <ListGroup.Item action href="#genshin" onClick={() => setbookingGameName("genshin")}>
                                     <Figure.Image
                                         src="https://www.appdisqus.com/wp-content/uploads/2020/09/00-5-1.jpg"
                                     />
@@ -123,25 +130,27 @@ function Play() {
                                     <div class="container">
                                         <img src={`${process.env.PUBLIC_URL}/dota2.png`} className="img-size" />
                                         <h1 style={{ fontSize: "100px", fontFamily: "Sofia" }} class="top-left">DOTA2</h1>
-                                        {cardInfo && 
+                                        {cardInfo &&
                                             <div className="grid"> {/* if cardInfo have item  */}
                                                 {
-                                                    cardInfo.filter( user => (user.game).includes("dota2") ).map(renderCard) 
-                                                        /* loop if user.game have dota2 include in cardInfo call renderCard -> cardInfo  */
+                                                    cardInfo.filter(user => (user.game).includes("dota2")).map(renderCard)
+                                                    /* loop if user.game have dota2 include in cardInfo call renderCard -> cardInfo  */
                                                 }
                                             </div>
                                         }
                                     </div>
                                 </Tab.Pane>
-                                <Tab.Pane eventKey="#csgo">
+                                <Tab.Pane eventKey="#csgo"  >
                                     <div class="container">
                                         <img src={`${process.env.PUBLIC_URL}/csgo.jpg`} className="img-size" />
                                         <h1 style={{ fontSize: "100px", fontFamily: "Sofia" }} class="top-left">CS:GO</h1>
-                                        {cardInfo && 
-                                            <div className="grid"> {/* if cardInfo have item  */}
+                                        {cardInfo &&
+                                            <div className="grid" > {/* if cardInfo have item  */}
+
                                                 {
-                                                    cardInfo.filter( user => (user.game).includes("csgo") ).map(renderCard) 
-                                                        /* loop if user.game have csgo include in cardInfo call renderCard -> cardInfo  */
+
+                                                    cardInfo.filter(user => (user.game).includes("csgo")).map(renderCard)
+                                                    /* loop if user.game have csgo include in cardInfo call renderCard -> cardInfo  */
                                                 }
                                             </div>
                                         }
@@ -151,11 +160,11 @@ function Play() {
                                     <div class="container">
                                         <img src={`${process.env.PUBLIC_URL}/amongUs.jpg`} className="img-size" />
                                         <h1 style={{ fontSize: "100px", fontFamily: "Sofia" }} class="top-left">Among Us</h1>
-                                        {cardInfo && 
+                                        {cardInfo &&
                                             <div className="grid"> {/* if cardInfo have item  */}
                                                 {
-                                                    cardInfo.filter( user => (user.game).includes("amongus") ).map(renderCard) 
-                                                        /* loop if user.game have amongUs include in cardInfo call renderCard -> cardInfo  */
+                                                    cardInfo.filter(user => (user.game).includes("amongus")).map(renderCard)
+                                                    /* loop if user.game have amongUs include in cardInfo call renderCard -> cardInfo  */
                                                 }
                                             </div>
                                         }
@@ -165,11 +174,11 @@ function Play() {
                                     <div class="container">
                                         <img src={`${process.env.PUBLIC_URL}/genshin.jpg`} className="img-size" />
                                         <h1 style={{ fontSize: "100px", fontFamily: "Sofia" }} class="top-left">Genshin</h1>
-                                        {cardInfo && 
+                                        {cardInfo &&
                                             <div className="grid">
                                                 {
-                                                    cardInfo.filter( user => (user.game).includes("genshin") ).map(renderCard) 
-                                                        /* loop if user.game have genshin include in cardInfo call renderCard -> cardInfo  */
+                                                    cardInfo.filter(user => (user.game).includes("genshin")).map(renderCard)
+                                                    /* loop if user.game have genshin include in cardInfo call renderCard -> cardInfo  */
                                                 }
                                             </div>
                                         }
