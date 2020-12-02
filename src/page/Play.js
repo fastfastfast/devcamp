@@ -117,8 +117,7 @@ function Play() {
                                         {cardInfo && 
                                             <div className="grid"> {/* if cardInfo have item  */}
                                                 {
-                                                    cardInfo
-                                                        .filter( user => (user.game).includes("dota2") ).map(renderCard) 
+                                                    cardInfo.filter( user => (user.game).includes("dota2") ).map(renderCard) 
                                                         /* loop if user.game have dota2 include in cardInfo call renderCard -> cardInfo  */
                                                 }
                                             </div>
@@ -132,8 +131,7 @@ function Play() {
                                         {cardInfo && 
                                             <div className="grid"> {/* if cardInfo have item  */}
                                                 {
-                                                    cardInfo
-                                                        .filter( user => (user.game).includes("csgo") ).map(renderCard) 
+                                                    cardInfo.filter( user => (user.game).includes("csgo") ).map(renderCard) 
                                                         /* loop if user.game have csgo include in cardInfo call renderCard -> cardInfo  */
                                                 }
                                             </div>
@@ -147,8 +145,7 @@ function Play() {
                                         {cardInfo && 
                                             <div className="grid"> {/* if cardInfo have item  */}
                                                 {
-                                                    cardInfo
-                                                        .filter( user => (user.game).includes("amongus") ).map(renderCard) 
+                                                    cardInfo.filter( user => (user.game).includes("amongus") ).map(renderCard) 
                                                         /* loop if user.game have amongUs include in cardInfo call renderCard -> cardInfo  */
                                                 }
                                             </div>
@@ -162,8 +159,7 @@ function Play() {
                                         {cardInfo && 
                                             <div className="grid">
                                                 {
-                                                    cardInfo
-                                                        .filter( user => (user.game).includes("genshin") ).map(renderCard) 
+                                                    cardInfo.filter( user => (user.game).includes("genshin") ).map(renderCard) 
                                                         /* loop if user.game have genshin include in cardInfo call renderCard -> cardInfo  */
                                                 }
                                             </div>
